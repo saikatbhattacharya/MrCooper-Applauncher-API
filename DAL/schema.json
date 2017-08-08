@@ -1,0 +1,8 @@
+{
+    "apps":{
+        "displayname":"String",
+        "iconimage": "String",
+        "description": "String",
+        "linkUrl": "String"
+    }
+}
