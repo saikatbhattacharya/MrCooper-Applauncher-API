@@ -1,4 +1,1 @@
-# billwale
-
-npm start
-"# MrCooper-Applauncher-API" 
+# MrCooper-Applauncher-API
