@@ -4,5 +4,9 @@
         "iconimage": "String",
         "description": "String",
         "linkUrl": "String"
+    },
+    "users":{
+        "userId":"String",
+        "role":"String"
     }
 }

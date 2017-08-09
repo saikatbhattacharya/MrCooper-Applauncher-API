@@ -1,5 +1,3 @@
-var http = require('http-as-promised');
-var config = require('../config');
 var dbLayer = require('../DAL');
 var responseHandler = require('./responseHandler');
 
@@ -11,7 +9,12 @@ module.exports = {
         dbLayer.AGGREGATE(model, query, res);
     },
     postData: function (model, postObj, res) {
-        console.log('****** postData: ', postObj);
         dbLayer.CREATE(model, postObj, res);
+    },
+    putData: function (model, query, update, options, res) {
+        dbLayer.UPDATE(model, query, update, options, res);
+    },
+    postFile: function (req, res) {
+        dbLayer.CREATE_FILE(req,res);
     }
 }

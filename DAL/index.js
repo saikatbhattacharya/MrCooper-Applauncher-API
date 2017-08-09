@@ -31,6 +31,19 @@ module.exports = {
       }
     })
   },
+  CREATE_FILE: function (req, res) {
+    var writestream = gfs.createWriteStream({
+      filename: req.file.originalname
+    });
+    fs.createReadStream("./uploads/" + req.file.filename)
+      .on("end", function () {
+        fs.unlink("./uploads/" + req.file.filename, function (err) {
+          responseHandler.response({ msg: 'Success' }, res);
+        })
+      })
+      .on("err", function () { responseHandler.errorRes({ err: "Error in upload" }, res); })
+      .pipe(writestream);
+  },
   READ: function (modelName, query, res) {
     model[modelName].find(query, function (err, data) {
       if (err) {
@@ -43,6 +56,16 @@ module.exports = {
   },
   AGGREGATE: function (modelName, query, res) {
     model[modelName].aggregate(query, function(err, data) {
+      if (err) {
+        responseHandler.errorRes(err, res);
+      }
+      else {
+        responseHandler.response(data, res);
+      }
+    })
+  },
+  UPDATE : function (modelName, query, update, options, res) {
+    model[modelName].update(query, update, options, function(err, data) {
       if (err) {
         responseHandler.errorRes(err, res);
       }
